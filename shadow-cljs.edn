@@ -1,0 +1,21 @@
+;; shadow-cljs configuration
+{:source-paths
+ ["src/dev"
+  "src/main"
+  "src/js"
+  "src/test"]
+
+ :dependencies
+ [[applied-science/js-interop "0.3.1"]]
+
+ :builds
+ {:appscript {:target :browser
+														:modules {:main {:entries [app-script.core]}}
+														:devtools {:enabled false}
+														:build-hooks [(app-script.hooks/build-hook)]
+														:output-to "Code.js"
+              :output-dir "target"
+              :compiler-options {:externs ["resources/gas.ext.js"]}
+              :js-options {:js-provider :shadow}
+              :release {:compiler-options {:optimizations :advanced
+              																													:pretty-print false}}}}
